@@ -34,17 +34,14 @@ export default function CreateUser() {
   });
 
   useEffect(() => {
-    // Buscar todos os clientes disponíveis
     fetchClients();
   }, []);
 
   const fetchClients = async () => {
     try {
-      // Buscar apenas clientes sem consultor vinculado
       const response = await fetch("/api/clients");
       const data = await response.json();
       
-      // Filtrar apenas clientes sem consultor
       const clientesSemConsultor = (data.clients || []).filter(
         (client: Client) => !client.consultorId
       );

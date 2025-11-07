@@ -8,17 +8,14 @@ export async function GET(request: NextRequest) {
     const startDate = searchParams.get("startDate");
     const endDate = searchParams.get("endDate");
 
-    // Construir filtro
     const where: any = {
       role: "CLIENT",
     };
 
-    // Filtrar por consultor específico
     if (consultorId && consultorId !== "") {
       where.consultorId = consultorId;
     }
 
-    // Filtrar por período
     if (startDate && endDate) {
       const start = new Date(startDate);
       start.setHours(0, 0, 0, 0);
@@ -32,7 +29,6 @@ export async function GET(request: NextRequest) {
       };
     }
 
-    // Buscar clientes
     const clients = await prisma.user.findMany({
       where,
       include: {
@@ -49,7 +45,6 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Contar total de clientes nos últimos 7 dias
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
@@ -62,7 +57,6 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Contar total de clientes (todos)
     const totalClients = await prisma.user.count({
       where: {
         role: "CLIENT",

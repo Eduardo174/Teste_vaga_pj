@@ -187,7 +187,6 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Período (dinâmico) */}
               <div className="flex-1">
                 <label className="block mb-1 text-[11px] text-[#9CA3AF]">
                   Período

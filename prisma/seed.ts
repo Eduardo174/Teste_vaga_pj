@@ -3,12 +3,10 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Iniciando seed do banco de dados...');
+  console.log('Iniciando seed...');
 
-  // Limpar dados existentes
   await prisma.user.deleteMany();
 
-  // Criar consultores
   const consultor1 = await prisma.user.create({
     data: {
       name: 'John Doe',
@@ -27,9 +25,8 @@ async function main() {
     },
   });
 
-  console.log('✅ Consultores criados');
+  console.log('Consultores criados');
 
-  // Criar clientes para consultor1
   const clientesConsultor1 = [
     { name: 'Cliente 1', email: 'cliente1@example.com', telefone: '(11) 91000-0001', cpf: '001.001.001-01', idade: 25, endereco: 'Rua Exemplo, 100 - São Paulo, SP' },
     { name: 'Cliente 2', email: 'cliente2@example.com', telefone: '(11) 91000-0002', cpf: '002.002.002-02', idade: 28, endereco: 'Rua Exemplo, 200 - São Paulo, SP' },
@@ -48,7 +45,6 @@ async function main() {
     });
   }
 
-  // Criar clientes para consultor2
   const clientesConsultor2 = [
     { name: 'Cliente 6', email: 'cliente6@example.com', telefone: '(21) 92000-0006', cpf: '006.006.006-06', idade: 26, endereco: 'Avenida Principal, 600 - Rio de Janeiro, RJ' },
     { name: 'Cliente 7', email: 'cliente7@example.com', telefone: '(21) 92000-0007', cpf: '007.007.007-07', idade: 29, endereco: 'Avenida Principal, 700 - Rio de Janeiro, RJ' },
@@ -67,14 +63,13 @@ async function main() {
     });
   }
 
-  console.log('✅ Clientes criados');
-  console.log('🎉 Seed concluído com sucesso!');
-  console.log(`📊 Total: 2 consultores e 10 clientes`);
+  console.log('Seed concluído com sucesso!');
+  console.log('Total: 2 consultores e 10 clientes');
 }
 
 main()
   .catch((e) => {
-    console.error('❌ Erro ao fazer seed:', e);
+    console.error('Erro ao fazer seed:', e);
     process.exit(1);
   })
   .finally(async () => {
