@@ -103,7 +103,6 @@ export default function CreateUser() {
     }));
   };
 
-  // Máscaras de input
   const formatPhone = (value: string) => {
     const cleaned = value.replace(/\D/g, "");
     if (cleaned.length <= 10) {
@@ -127,7 +126,6 @@ export default function CreateUser() {
       <Header />
 
       <main className="max-w-[800px] mx-auto px-6 py-8">
-        {/* Tabs */}
         <div className="flex gap-4 mb-8">
           <button
             onClick={() => router.push("/usuarios")}
@@ -140,10 +138,8 @@ export default function CreateUser() {
           </button>
         </div>
 
-        {/* Título */}
         <h1 className="text-2xl font-bold mb-6">Criar usuário</h1>
 
-        {/* Mensagens de erro e sucesso */}
         {errorMessage && (
           <div className="mb-4 p-4 bg-red-500/10 border border-red-500 rounded-lg text-red-500 text-sm">
             {errorMessage}
@@ -155,9 +151,7 @@ export default function CreateUser() {
           </div>
         )}
 
-        {/* Formulário */}
         <form onSubmit={handleSubmit}>
-          {/* Tipo de usuário */}
           <div className="mb-6">
             <label className="block text-sm text-gray-400 mb-2">
               Tipo do usuário
@@ -175,7 +169,6 @@ export default function CreateUser() {
             </select>
           </div>
 
-          {/* Tabs Info / Clientes */}
           <div className="flex gap-2 mb-6 border-b border-gray-800">
             <button
               type="button"
@@ -203,10 +196,8 @@ export default function CreateUser() {
             )}
           </div>
 
-          {/* Tab: Informações básicas */}
           {activeTab === "info" && (
             <div className="space-y-6">
-              {/* Nome e Telefone */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm text-gray-400 mb-2">
@@ -236,7 +227,6 @@ export default function CreateUser() {
                 </div>
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-sm text-gray-400 mb-2">
                   Email
@@ -251,7 +241,6 @@ export default function CreateUser() {
                 />
               </div>
 
-              {/* Idade e CPF */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm text-gray-400 mb-2">
@@ -280,7 +269,6 @@ export default function CreateUser() {
                 </div>
               </div>
 
-              {/* CEP e Estado */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm text-gray-400 mb-2">
@@ -317,7 +305,6 @@ export default function CreateUser() {
                 </div>
               </div>
 
-              {/* Endereço */}
               <div>
                 <label className="block text-sm text-gray-400 mb-2">
                   Endereço
@@ -331,7 +318,6 @@ export default function CreateUser() {
                 />
               </div>
 
-              {/* Complemento */}
               <div>
                 <label className="block text-sm text-gray-400 mb-2">
                   Complemento
@@ -347,7 +333,6 @@ export default function CreateUser() {
             </div>
           )}
 
-          {/* Tab: Adicionar clientes (apenas se for Consultor) */}
           {activeTab === "clients" && formData.tipo === "CONSULTOR" && (
             <div className="space-y-4">
               <p className="text-sm text-gray-400 mb-4">
@@ -382,7 +367,6 @@ export default function CreateUser() {
             </div>
           )}
 
-          {/* Botões */}
           <div className="flex gap-4 mt-8">
             <button
               type="button"
