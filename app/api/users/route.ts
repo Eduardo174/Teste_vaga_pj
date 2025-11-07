@@ -6,7 +6,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { name, email, telefone, cpf, idade, endereco, role, clientIds } = body;
 
-    // Validação básica
     if (!name || !email || !role) {
       return NextResponse.json(
         { error: "Nome, email e tipo são obrigatórios" },
@@ -14,7 +13,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Criar usuário
     const user = await prisma.user.create({
       data: {
         name,
@@ -27,7 +25,6 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Se for consultor e tiver clientes para vincular
     if (role === "CONSULTOR" && clientIds && clientIds.length > 0) {
       await prisma.user.updateMany({
         where: {
@@ -48,7 +45,6 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error("Erro ao criar usuário:", error);
     
-    // Erro de email duplicado
     if (error.code === "P2002") {
       return NextResponse.json(
         { error: "Email já cadastrado" },
@@ -74,8 +70,6 @@ export async function PUT(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    // Atualizar usuário
     const user = await prisma.user.update({
       where: { id },
       data: {
@@ -89,9 +83,7 @@ export async function PUT(request: NextRequest) {
       },
     });
 
-    // Se for consultor, atualizar clientes vinculados
     if (role === "CONSULTOR" && clientIds) {
-      // Remover vínculo de todos os clientes deste consultor
       await prisma.user.updateMany({
         where: {
           consultorId: user.id,
@@ -101,7 +93,6 @@ export async function PUT(request: NextRequest) {
         },
       });
 
-      // Vincular os novos clientes
       if (clientIds.length > 0) {
         await prisma.user.updateMany({
           where: {

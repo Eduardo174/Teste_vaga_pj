@@ -89,12 +89,9 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <Header />
-
       <main className="max-w-[1400px] mx-auto px-10 py-10">
-        {/* Título + botão */}
         <div className="flex items-center justify-between mb-10">
           <h1 className="text-[32px] font-semibold tracking-tight">Dashboard</h1>
-
           <button 
             onClick={() => router.push("/usuarios")}
             className="inline-flex items-center gap-2 rounded-lg bg-[#1FB655] hover:bg-[#169645] px-5 py-2.5 text-sm font-medium text-white transition-colors"
@@ -105,11 +102,8 @@ export default function Dashboard() {
             </span>
           </button>
         </div>
-
-        {/* Card de métricas + filtros */}
         <div className="mb-8">
           <div className="flex items-stretch gap-6">
-            {/* Card total clientes */}
             <div className="w-[230px] bg-[#111111] border border-[#242424] rounded-lg px-5 py-5 flex flex-col justify-between">
               <div>
                 <p className="text-[11px] text-[#9CA3AF] mb-2">
@@ -128,10 +122,7 @@ export default function Dashboard() {
                 nos últimos 7 dias
               </p>
             </div>
-
-            {/* Filtros */}
             <div className="flex-1 flex items-center gap-4">
-              {/* Nome do consultor */}
               <div className="flex-1">
                 <label className="block mb-1 text-[11px] text-[#9CA3AF]">
                   Nome do consultor
@@ -154,8 +145,6 @@ export default function Dashboard() {
                   </span>
                 </div>
               </div>
-
-              {/* Email do consultor */}
               <div className="flex-1">
                 <label className="block mb-1 text-[11px] text-[#9CA3AF]">
                   Email do consultor
@@ -214,8 +203,6 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-
-        {/* Tabela */}
         <div className="bg-[#111111] border border-[#242424] rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -301,14 +288,6 @@ export default function Dashboard() {
             </table>
           </div>
         </div>
-
-        {/* Nota */}
-        <p className="text-[#6B7280] text-[11px] mt-6 max-w-xl leading-relaxed">
-          A Home da Dashboard tem como objetivo listar os clientes de um
-          consultor específico. Quando nenhum filtro de consultor for aplicado,
-          todos os clientes devem ser exibidos, independentemente do consultor
-          responsável.
-        </p>
       </main>
     </div>
   );
